@@ -1,6 +1,10 @@
 # Professors Observationns
 Observations and recommendations from Professor Ashutosh.
 
+## Thursday 2/19/2026 - Stage 1
+* All pre-survey question will be on qualtrics
+* He will give us the demographics questions
+
 ## Tuesday 2/16/2026
 Random (every 10 seconds)
 Study the mouse pointers
@@ -62,7 +66,3 @@ Questions:
 IS behavioral metric objective?
 What it subjective?
 Should we try to induce frustration
-
-## Thursday 2/19/2026 - Stage 1
-* All pre-survey question will be on qualtrics
-* He will give us the demographics questions
