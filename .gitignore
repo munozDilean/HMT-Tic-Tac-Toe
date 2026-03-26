@@ -46,3 +46,6 @@ __pycache__/
 
 #db
 db.sqlite3
+
+#misc
+lectures.md

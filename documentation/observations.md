@@ -1,11 +1,22 @@
 # Professors Observationns
+
 Observations and recommendations from Professor Ashutosh.
 
+## Thursday 03/19 - Project Day
+
+- When will we get the demographics question.
+  - Will be provided during stage 3
+- We are supposed to put the pre-survey questions on **Qualtrix**. What about the rest of the questions? And how does it go with the flow of the project?
+  - All the questions will be on **Qualtrix**
+  - Save data and like mouse movements.
+
 ## Thursday 2/19/2026 - Stage 1
-* All pre-survey question will be on qualtrics
-* He will give us the demographics questions
+
+- All **pre-survey** question will be on **Qualtrix**
+- He will give us the demographics questions
 
 ## Tuesday 2/16/2026
+
 Random (every 10 seconds)
 Study the mouse pointers
 Voice Activation (Not sure about it yet)
@@ -16,6 +27,7 @@ Don’t need a dataset.
 Start with Tic-tac-toe, if you are able to do it right, move on to other games like sudoku
 
 ### When to give suggestions
+
 Give it randomly, every 10 seconds or 2 minutes
 Standard demographics:
 Age is an important factor (gotta get this information)
@@ -27,16 +39,16 @@ How frustrated are you in the experience
 FDS
 SUS
 NASATLX
-Objective metrics:  Metrics that are not influenced by bias
+Objective metrics: Metrics that are not influenced by bias
 The moves that you are making
 Behavior metrics:
 Mouse movements
 With this you can measure delay
-You will need  a timer
+You will need a timer
 You will need a low pass filter
 Will remove noise from the data
 YOU can use Euclidian distance between points
-When distance are below a certain threshold  then remove those points
+When distance are below a certain threshold then remove those points
 Identify the high points
 X-cord gametime
 Y-cord speed
@@ -44,8 +56,9 @@ Demographics data needed
 Human information
 
 ### Flow of the Project
+
 1. Pre-survey (experience)
-2.  Experience
+2. Experience
 3. Baseline frustration
 4. On second treatment don’t ask again but as #2
 5. Pre-survey
