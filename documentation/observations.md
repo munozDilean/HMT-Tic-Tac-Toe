@@ -2,6 +2,18 @@
 
 Observations and recommendations from Professor Ashutosh.
 
+## Tuesday 3/24/2026 - Stage 2 part 1
+
+- We are allowed to use datatest for algorithms and models we need to implement.
+- In our scenario, these would mean two models:
+  - a dataset for a model on learning how to play tic tac toe.
+  - A model that is able to detect when the user is frustrated from the mouse tracking data.
+- Good Resources:
+  - https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2020.565664/full
+  - https://pmc.ncbi.nlm.nih.gov/articles/PMC7701271/
+    - https://gitlab.com/iarapakis/the-attentive-cursor-dataset
+    - https://github.com/luileito/evtrack
+
 ## Thursday 03/19 - Project Day
 
 - When will we get the demographics question.
