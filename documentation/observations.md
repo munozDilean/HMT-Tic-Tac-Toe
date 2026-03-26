@@ -2,9 +2,27 @@
 
 Observations and recommendations from Professor Ashutosh.
 
+## Thursday 3/26/2026 - Stage 2 Presentation
+
+> - Need to rewrite both hypothesis before submission.
+> - Adjust the flow (slide 8, Study Logistic).
+
+- Independent Variables:
+  - The time that we give the advice based on the context
+  - Random advice given arbitrarily
+- With these we can measure frustration and trust.
+- First Hypothesis: Advice given at a arbitrary interval
+- Second Hypothesis: A context aware machine is capable of generating better trust metrics than one lacking context
+- Provide the treatments at random.
+- For Post survey: NASA-TLX measures subjective load. These are better if done at last, after they are done with both treatments and SUS
+- Frustration calculation: Put it on a scale. How frustrated were you in respect to the notifications received, 1 being least 5 being most.
+- We don't have FDS
+- These are all
+- We might not need to use them all, only the ones that we might consider part of our project.
+
 ## Tuesday 3/24/2026 - Stage 2 part 1
 
-- We are allowed to use datatest for algorithms and models we need to implement.
+- We are allowed to use dataset for algorithms and models we need to implement.
 - In our scenario, these would mean two models:
   - a dataset for a model on learning how to play tic tac toe.
   - A model that is able to detect when the user is frustrated from the mouse tracking data.
