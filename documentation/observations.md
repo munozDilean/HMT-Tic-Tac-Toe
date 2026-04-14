@@ -1,6 +1,27 @@
-# Professors Observationns
+# Professors Observations
 
 Observations and recommendations from Professor Ashutosh.
+
+## Tuesday 4/14/2026 - Project Overview
+- No Presentation for the project anymore
+- He will be our tester
+- Deadline is __26th April__ for final submissions.
+- Project is out of 40
+- __Stage three requires you to be in person (4/21)__
+- If can't meet, he can reschedule for a personal presentation
+- __We will not have any demographics questions anymore__
+-  Once you present, you are done with the classes, no need to join the other presentations.
+- Results will be uploaded by the 2nd of May or slightly earlier. If need to discuss, he has hours between 10-11am to clarify any questions on the grade.
+- Q: How long are the demos supposed to be?
+  - They should be around 20 minutes
+- Evaluation Criteria has changed.
+- There will be code review (include tests) and see how well you understand your code. __There will be a small Q&A__
+  - Why did you implement this feature
+  - Why did you use moving average
+  - Why you chose this platform to implement.
+- We will start with the demo, and then there will be questions.
+- He wants you to present on the same day even if it's later in the day.
+
 
 ## Thursday 3/26/2026 - Stage 2 Presentation
 
