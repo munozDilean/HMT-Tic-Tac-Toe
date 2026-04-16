@@ -18,3 +18,22 @@ Teams
 - [Interfaces t faces to Enhance P o Enhance Performance in Human-AI T formance in Human-AI Teams
 Conducting Safety-Critical Military Operations: A Route
 Reconnaissance Use Case](https://open.clemson.edu/cgi/viewcontent.cgi?article=5224&context=all_dissertations)
+
+
+## Running the App
+
+### For Devs
+Follow these steps to setup the envoirment needed to run the application
+1. Create a venv
+```bash
+python -m venv .venv
+```
+2. Enter your .venv (this will be OS specific)
+3. Install all the requirements
+```bash
+pip install -r requirements.txt
+```
+4. Run the Application 
+```bash
+python manage.py runserver
+```

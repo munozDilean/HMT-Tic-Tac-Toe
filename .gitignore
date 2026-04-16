@@ -41,8 +41,6 @@ __pycache__/
 *.pyo
 /game/migrations
 /game/venv
-/game/__init__.py
-/tictactoe_api/__init__.py
 
 #db
 db.sqlite3
