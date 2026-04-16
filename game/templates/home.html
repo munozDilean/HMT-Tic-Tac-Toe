@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="page-wrapper">
+  <div class="main-row">
+
+    <div class="game-col">
+      <div class="game-board">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+      <div class="mt-2">Somebody's turn</div>
+    </div>
+
+    <div class="chat-col">
+      <div class="chat-container">
+        <div class="chat-header bg-primary text-white p-2">
+          <h5 class="mb-0">AI Chatbot</h5>
+        </div>
+        <div class="chat-messages">
+          <!-- Messages go here -->
+        </div>
+        <div class="chat-input p-2 border-top">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Ask the AI..." id="userInput">
+            <button class="btn btn-primary" id="sendBtn">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import render
 
 from .ai import get_ai_move, check_winner, get_available_moves, encode_board
 from .serializers import MoveRequestSerializer, ValidateBoardSerializer
@@ -71,3 +72,5 @@ class HealthView(APIView):
             "encoding": "one-hot 2-bit per cell | X=[1,0] O=[0,1] empty=[0,0]",
         })
 
+def home(request):
+    return render(request, "home.html")
