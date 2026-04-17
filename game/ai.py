@@ -70,7 +70,6 @@ def check_winner(board: list) -> str | None:
     return None
 
 
-# Minimax AI (perfect play, used as fallback / training target)
 def _minimax(board: list, is_maximizing: bool, ai_player: str, human_player: str) -> int:
     winner = check_winner(board)
     if winner == ai_player:
@@ -117,7 +116,7 @@ def minimax_move(board: list, ai_player: str) -> int:
 
 
 
-# Neural Network AI stub (plug in trained weights here)
+# Pretrained weights can be plugged in here
 class NeuralAI:
     def __init__(self):
         self.weights = None
@@ -161,7 +160,7 @@ class NeuralAI:
         x = encode_board(board)
         logits = self._forward(x)
 
-        # Mask occupied squares
+        # makes occupied squares unplayable
         mask = np.array([0.0 if cell is None else -np.inf for cell in board])
         masked = logits + mask
 
@@ -176,11 +175,21 @@ class NeuralAI:
 
 
 # Top-level move selector
-# Singleton neural AI instance (weights loaded once at startup)
 _neural_ai = NeuralAI()
 _weights_path = os.path.join(os.path.dirname(__file__), "weights.json")
 if os.path.exists(_weights_path):
     _neural_ai.load(_weights_path)
+
+# Clear defintions for win states
+def _find_winning_move(board: list, player: str) -> int | None:
+    """Return a move index that wins immediately for player, or None."""
+    for move in get_available_moves(board):
+        board[move] = player
+        winner = check_winner(board)
+        board[move] = None
+        if winner == player:
+            return move
+    return None
 
 
 def get_ai_move(board: list, player: str, mode: str = "auto") -> dict:
@@ -191,7 +200,16 @@ def get_ai_move(board: list, player: str, mode: str = "auto") -> dict:
     use_neural = (mode == "neural") or (mode == "auto" and _neural_ai.is_trained)
 
     if use_neural:
-        move = _neural_ai.predict(board, player)
+        opponent = "O" if player == "X" else "X"
+
+        # 1. Take a winning move if one exists
+        priority_move = _find_winning_move(board, player)
+
+        # 2. Block opponent's winning move
+        if priority_move is None:
+            priority_move = _find_winning_move(board, opponent)
+
+        move = priority_move if priority_move is not None else _neural_ai.predict(board, player)
         ai_type = "neural"
     else:
         move = minimax_move(board, player)

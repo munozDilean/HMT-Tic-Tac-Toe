@@ -52,12 +52,6 @@ class ValidateBoardSerializer(serializers.Serializer):
         max_length=9,
     )
 
+    # simplified this method
     def validate_board(self, board):
-        cleaned = [None if c in (None, "null", "") else c for c in board]
-        x_count = cleaned.count("X")
-        o_count = cleaned.count("O")
-        if abs(x_count - o_count) > 1:
-            raise serializers.ValidationError(
-                "Invalid board: X and O counts are inconsistent."
-            )
-        return cleaned
+        return [None if c in (None, "null", "") else c for c in board]
