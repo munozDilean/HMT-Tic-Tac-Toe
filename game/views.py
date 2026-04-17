@@ -72,5 +72,8 @@ class HealthView(APIView):
             "encoding": "one-hot 2-bit per cell | X=[1,0] O=[0,1] empty=[0,0]",
         })
 
-def home(request):
-    return render(request, "home.html")
+def start(request):
+    return render(request, "start.html")
+
+def game(request):
+    return render(request, "game.html")
