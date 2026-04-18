@@ -2,10 +2,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render
+import random
 
 from .ai import get_ai_move, check_winner, get_available_moves, encode_board
 from .serializers import MoveRequestSerializer, ValidateBoardSerializer
 
+context = {}
 
 class MoveView(APIView):
 
@@ -73,7 +75,11 @@ class HealthView(APIView):
         })
 
 def start(request):
-    return render(request, "start.html")
+    global context
+    start_treatment = random.randint(0,1)
+    context = {"startTreatment" : start_treatment}
+    return render(request, "start.html", context)
 
 def game(request):
-    return render(request, "game.html")
+    global context
+    return render(request, "game.html", context)

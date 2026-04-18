@@ -49,5 +49,5 @@ Instructions: Rate on a scale of 1–7
 1 = Very Difficult<br>
 7 = Very Easy
 
-## FDS
+## FDS (Frustration Discomfort Scale)
 Not sure what this is?
