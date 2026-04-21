@@ -1,11 +1,20 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!-- Treatment start variable is startTreatment -->
-<div class="page-wrapper">
-  <div class="main-row">
+<!-- Questionnaire Midpoint Screen -->
+<div id="midpoint-screen" style="display: none;">
+  <h1>Experiment Paused</h1>
+  <p class="lead mt-3">Please switch back to the questionnaire and answer the questions.</p>
+  <button id="midpointNextBtn" class="btn btn-success btn-lg mt-4">Next</button>
+</div>
 
+<!-- Treatment start variable is startTreatment -->
+<div class="page-wrapper" id="main-game-wrapper">
+  <div class="main-row">
     <div class="game-col">
+      <div class="row w-100 text-center mb-3">
+        <h3 id="round-indicator">Round 1 / 6</h3>
+      </div>
       <div class="game-board">
         <div class="box" data-index="0"></div>
         <div class="box" data-index="1"></div>
@@ -17,8 +26,11 @@
         <div class="box" data-index="7"></div>
         <div class="box" data-index="8"></div>
       </div>
-      <div class="row">
-        <span class="turn-indicator">X's turn</span>
+      <div class="row mt-3 text-center">
+        <span class="winner-indicator" style="font-size: 1.5rem;"></span>
+      </div>
+      <div class="row mt-3 text-center">
+        <button id="nextRoundBtn" class="btn btn-primary btn-lg" style="display: none;">Next Round</button>
       </div>
     </div>
 
@@ -40,4 +52,9 @@
     </div>
   </div>
 </div>
+
+<script>
+  window.startTreatment = {{ startTreatment }};
+  console.log({{ startTreatment }});
+</script>
 {% endblock %}
