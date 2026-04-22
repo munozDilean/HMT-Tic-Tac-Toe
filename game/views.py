@@ -6,6 +6,10 @@ import random
 
 from .ai import get_ai_move, check_winner, get_available_moves, encode_board
 from .serializers import MoveRequestSerializer, ValidateBoardSerializer
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 context = {}
 
@@ -127,18 +131,15 @@ You must analyze the board and suggest the best empty square numeric position fo
 The following squares are currently EMPTY and are the ONLY VALID MOVES you can suggest: {', '.join(available_moves)}
 """
         if is_suggestion:
-            system_prompt += f"\n[CRITICAL INSTRUCTION]: You MUST recommend that the human play in square {perfect_move}. This is mathematically the best move. You MUST include a short reasoning process outlining why square {perfect_move} is the best move (e.g. blocking the opponent, securing a win, or taking the center).\nYour final answer must clearly state the numeric position {perfect_move}."
+            system_prompt += f"\n[CRITICAL INSTRUCTION]: You MUST recommend that the human play in square {perfect_move}. This is mathematically the best move. You MUST keep your reasoning INCREDIBLY BRIEF (max 1 short sentence) as to why square {perfect_move} is the best move.\nYour final answer must clearly state the numeric position {perfect_move}."
         else:
-            system_prompt += "\nYou MUST include a short reasoning process outlining your thoughts before answering.\nAnswer the human's question concisely in your final answer without using any XML tags."
-
+            system_prompt += "\n[CRITICAL INSTRUCTION]: You MUST keep your answer INCREDIBLY BRIEF (max 1 short sentence). Avoid long explanations entirely."
         try:
             from openai import OpenAI
-            client = OpenAI(base_url="http://localhost:1234/v1", api_key="lm-studio")
+            client = OpenAI(base_url=os.getenv("llm-base-url"), api_key=os.getenv("llm-api-key"))
+
+            active_model =os.getenv("llm-model")
             
-            # Dynamically grab the active model ID currently loaded in LM Studio
-            # This prevents 400 errors when swapping models
-            available_models = client.models.list()
-            active_model = available_models.data[0].id if available_models.data else "local-model"
             
             messages = [{"role": "system", "content": system_prompt}]
             
@@ -159,7 +160,7 @@ The following squares are currently EMPTY and are the ONLY VALID MOVES you can s
                 model=active_model,
                 messages=messages,
                 temperature=0.5,
-                max_tokens=150
+                max_tokens=100
             )
             
             msg = response.choices[0].message

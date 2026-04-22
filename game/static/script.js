@@ -10,10 +10,10 @@ const mouseData = [];
 
 // Mouse Frustration detection
 const FRUSTRATION_CONFIG = {
-	velocityThreshold: 0.8,      // px/ms — erratic fast movement (average)
+	velocityThreshold: 0.2,      // px/ms — erratic fast movement (average)
 	directionChangeWindow: 50,    // look at last N mouse points
-	directionChangeThreshold: 5,  // reversals within that window
-	hesitationThreshold: 5000,    // ms idle = hesitation
+	directionChangeThreshold: 1,  // reversals within that window
+	hesitationThreshold: 3500,    // ms idle = hesitation
 	cooldown: 15000,              // ms before frustration can trigger again
 };
 
@@ -31,7 +31,7 @@ document.addEventListener('mousemove', (e) => {
 	if (lastMousePos) {
 		const directionChanges = countRecentDirectionChanges();
 		const avgVelocity = getRecentAverageVelocity();
-
+		//console.log(`velocity: ${avgVelocity.toFixed(3)}, dirChanges: ${directionChanges}`); // ← add this
 		if (currentTreatment === 1 && isFrustrated(avgVelocity, directionChanges)) {
 			onFrustrationDetected('erratic_movement');
 		}
@@ -150,22 +150,21 @@ function handleTurnEnd() {
 
 // Start Human Turn Logic
 function startHumanTurn() {
-	currentPlayer = "X";
-	document.querySelector("#round-indicator").textContent = `Round ${roundCount} / 6`;
-	document.querySelector("#nextRoundBtn").style.display = "none";
-	emptyClickCount = 0; // Reset frustration
-	mouseData.length = 0;
+    currentPlayer = "X";
+    document.querySelector("#round-indicator").textContent = `Round ${roundCount} / 6`;
+    document.querySelector("#nextRoundBtn").style.display = "none";
+    emptyClickCount = 0;
+    mouseData.length = 0;
 
-	// Treatment 0: 10 Second Interval
-	if (currentTreatment === 0) {
-		clearInterval(intervalTimer);
-		intervalTimer = setInterval(() => {
-			if (!gameOver && currentPlayer === "X") {
-				console.log("10 Second Interval Triggered")
-				triggerSuggestion();
-			}
-		}, 10000); // 10 seconds
-	}
+    // Treatment 0: only start interval if not already running
+    if (currentTreatment === 0 && !intervalTimer) {
+        intervalTimer = setInterval(() => {
+            if (!gameOver && currentPlayer === "X") {
+                console.log("5 Second Interval Triggered");
+                triggerSuggestion();
+            }
+        }, 5000);
+    }
 }
 
 boxes.forEach((box) => {
@@ -186,7 +185,7 @@ boxes.forEach((box) => {
 		}
 
 		// Valid Move
-		clearInterval(intervalTimer); // Cancel suggestions since human moved
+		//clearInterval(intervalTimer); // Cancel suggestions since human moved
 		box.textContent = "X"; // Human is always X
 
 		if (handleTurnEnd()) return;
@@ -196,6 +195,8 @@ boxes.forEach((box) => {
 });
 
 function resetGame() {
+	clearInterval(intervalTimer);
+    intervalTimer = null;  // ← allows startHumanTurn to restart it for the new round
 	if (roundCount >= 6) {
 		alert("Experiment Complete! Thank you.");
 		return;
@@ -332,7 +333,7 @@ async function sendPayloadToChatbot(messageText, isSuggestion) {
 		}
 		appendMessage("bot", "Network error occurred.");
 	}
-}
+}	
 
 function appendMessage(sender, text) {
 	const messagesContainer = document.querySelector(".chat-messages");
