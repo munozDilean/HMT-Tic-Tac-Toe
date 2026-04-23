@@ -136,10 +136,11 @@ The following squares are currently EMPTY and are the ONLY VALID MOVES you can s
             system_prompt += "\n[CRITICAL INSTRUCTION]: You MUST keep your answer INCREDIBLY BRIEF (max 1 short sentence). Avoid long explanations entirely."
         try:
             from openai import OpenAI
-            client = OpenAI(base_url=os.getenv("llm-base-url"), api_key=os.getenv("llm-api-key"))
-
-            active_model =os.getenv("llm-model")
-            
+            client = OpenAI(base_url=os.getenv("LLM_BASE_URL"), api_key=os.getenv("LLM_API_KEY"))
+            active_model =  os.getenv("LLM_MODEL")
+            if active_model == "":
+                available_models = client.models.list()
+                active_model = available_models.data[0].id if available_models.data else "local-model"
             
             messages = [{"role": "system", "content": system_prompt}]
             

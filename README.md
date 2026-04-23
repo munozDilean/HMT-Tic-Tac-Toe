@@ -33,7 +33,20 @@ python -m venv .venv
 ```bash
 pip install -r requirements.txt
 ```
+3. Create a .env file in the tictactoe_api directory and add the following values:
+```bash
+LLM_BASE_URL = "<BASE_URL>"
+LLM_API_KEY = "<API_KEY>"
+LLM_MODEL = "<MODEL>"
+```
+> __*Note:*__ The LLM_MODEL can be left empty to allow for automatic selection of the default model
 4. Run the Application 
 ```bash
 python manage.py runserver
 ```
+
+## TechStack
+- Python 3.14.0
+- Django 5
+- OpenAI API
+- Local LLM: [lfm2-2.6b-mr-tictactoe@q8_0](https://huggingface.co/mradermacher/LFM2-2.6B-mr-tictactoe-GGUF)
