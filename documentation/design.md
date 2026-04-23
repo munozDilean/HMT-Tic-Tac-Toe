@@ -103,3 +103,14 @@ Building a chatbot
 - **Mutual Trust**: User can override suggestions — no forced compliance.
 - **Adaptability**: Chatbot adjusts advice based on user skill (if tracked).
 - **Feedback Integration**: Post-game questions inform future chatbot behavior.
+
+## Frustration Detection Table
+This is the configurations used to control frustration detection. It is located in `game/static/script.js`.
+
+| Configuration | What it controls | Effect of Increasing | Effect of Decreasing |
+| :--- | :--- | :--- | :--- |
+| **`velocityThreshold`**<br>(px/ms) | How fast the mouse must move to be considered "erratic." | **Less sensitive.** The user has to move the mouse extremely fast to trigger frustration. | **More sensitive.** Normal quick movements might be falsely flagged as frustration. |
+| **`directionChangeWindow`**<br>(N points) | The time frame (number of captured points) the system looks at to count directional changes. | **Smoother but slower.** Dilutes short bursts of erratic movement, but better at catching prolonged sweeping motions. | **Highly reactive.** Highly sensitive to sudden, brief jerks but might miss wider scrubbing motions. |
+| **`directionChangeThreshold`**<br>(reversals) | Number of back-and-forth direction changes required within the window to be "thrashing." | **Less sensitive.** Requires more violent, repeated back-and-forth shaking to trigger. Reduces false positives. | **More sensitive.** Triggers on fewer reversals, increasing false positives (e.g., normal curving mouse paths). |
+| **`hesitationThreshold`**<br>(ms) | How long the mouse must remain perfectly still to be considered "hesitation." | **Less sensitive.** User must be completely inactive for a longer time. Micro-hesitations are ignored. | **More sensitive.** Short pauses to read or think might be mistaken for confusion/hesitation. |
+| **`cooldown`**<br>(ms) | Time before another frustration event can be triggered after the last one. | **Less frequent.** Prevents spamming the user with interventions, but might miss sustained frustration. | **More frequent.** Can trigger events rapidly back-to-back, potentially annoying the user. |
